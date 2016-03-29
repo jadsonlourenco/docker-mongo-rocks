@@ -9,6 +9,7 @@ RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A && \
   apt-get install percona-server-mongodb -y -f
 
 ENV AUTH yes
+ENV USER admin
 ENV PASS mongorocks
 
 EXPOSE 27017

@@ -7,6 +7,9 @@ docker run -d -p 27017:27017 -e PASS=change jadsonlourenco/mongo-rocks
 
 ## Environment Variables
 
+#### USER - (default: admin)
+Define the user that has **root** permissions on Mongodb server.
+
 #### PASS - (default: mongorocks)
 Your password to authenticate with Mongodb server, has **root** permissions.
 
