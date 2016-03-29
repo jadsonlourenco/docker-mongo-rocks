@@ -14,9 +14,9 @@ fi
 $cmd &
 
 sleep 5
-echo "=> Creating an admin user..."
-mongo admin --eval "db.createUser({user: 'admin', pwd: '$PASS', roles: ['root']});"
+if [ "$AUTH" == "yes" ]; then
+    mongo admin --eval "db.createUser({user: 'admin', pwd: '$PASS', roles: ['root']});"
+fi
 echo "=> Done!"
-touch /data/db/.mongodb_password_set
 
 fg
