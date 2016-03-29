@@ -15,7 +15,7 @@ $cmd &
 
 if [ ! -f /data/db/.mongodb_password_set ]; then
   echo "=> Creating an admin user..."
-  mongo admin --eval "db.createUser({user: '$USER', pwd: '$PASS', roles: ['root']});"
+  mongo admin --eval "db.createUser({user: 'admin', pwd: '$PASS', roles: ['root']});"
   echo "=> Done!"
   touch /data/db/.mongodb_password_set
 fi
