@@ -9,12 +9,17 @@ RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A && \
   apt-get install percona-server-mongodb -y -f
 
 ENV AUTH yes
-ENV PASS mongorocks
+#ENV USER admin
+#ENV PASS admin
+#ENV DATABASE
+#ENV OPLOG_SIZE
 
 EXPOSE 27017
 
 VOLUME /data/db
 
+COPY ./set_auth.sh /
 COPY ./entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh && chmod +x /set_auth.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
