@@ -10,20 +10,26 @@ docker run -d -p 27017:27017 -e USER=test PASS=test jadsonlourenco/mongo-rocks
 #### AUTH - (default: yes)
 To disable authentication, set to **no**.
 
-#### USER - (default: admin)
-Define the user that has **root** permissions on Mongodb server.
+#### ADMIN_USER - (default: admin)
+You need have a user with **root** permissions, manager of the **admin** database ever present.
 
-#### PASS - (default: admin)
-Your password to authenticate with Mongodb server, has **root** permissions.
+#### ADMIN_PASS - (default: admin)
+The password of the **ADMIN_USER** above.
 
 #### DATABASE
-Create a new database with this name, the **USER** and **PASS** will be the same for this database.
+Create a new database with this name, the **DB_USER** and **DB_PASS** will be the owner of this database.
+
+#### DB_USER - (default: user)
+The user that manage the **DATABASE** above - don't have admin permissions.
+
+#### DB_PASS - (default: password)
+The password of the **DB_USER** above.
+
+#### DBPATH - (default: /data/db)
+The path that store all data, this setting is useful for *Docker volumes*
 
 #### OPLOG_SIZE
 Define the size of [Oplog](https://docs.mongodb.org/manual/tutorial/change-oplog-size/), in megabytes, for example, set **50** to be *50MB*.
-
-## Data Volume
-By default all data is stored on host volume: '/data/db'
 
 ## License
 None! Use as you want and like.

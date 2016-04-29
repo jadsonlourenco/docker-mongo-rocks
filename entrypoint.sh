@@ -1,8 +1,12 @@
 #!/bin/bash
 set -m
 
-mongodb_cmd="mongod --storageEngine rocksdb"
+mongodb_cmd="mongod --storageEngine rocksdb --dbpath $DBPATH"
 cmd="$mongodb_cmd --httpinterface --rest --master"
+
+if [ "$DBPATH" != "" ] && [ "$DBPATH" != "/data/db" ]; then
+  mkdir -p "$DBPATH"
+fi
 
 if [ "$AUTH" == "yes" ]; then
   cmd="$cmd --auth"
@@ -25,7 +29,7 @@ done
 mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldPeriodMS: 1000});"
 mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldIterations: 100000});"
 
-if [ ! -f /data/db/.mongodb_password_set ]; then
+if [ ! -f "$DBPATH"/.mongodb_password_set ]; then
   /set_auth.sh
 fi
 

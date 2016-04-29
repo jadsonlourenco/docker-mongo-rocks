@@ -8,15 +8,14 @@ RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A && \
   apt-get update && \
   apt-get install percona-server-mongodb -y -f
 
-ENV AUTH yes
-#ENV USER admin
-#ENV PASS admin
-#ENV DATABASE
-#ENV OPLOG_SIZE
+ENV AUTH="yes" \
+  ADMIN_USER="admin" \
+  ADMIN_PASS="admin" \
+  DBPATH="/data/db" \
+  DB_USER="user" \
+  DB_PASS="password"
 
 EXPOSE 27017
-
-VOLUME /data/db
 
 COPY ./set_auth.sh /
 COPY ./entrypoint.sh /
