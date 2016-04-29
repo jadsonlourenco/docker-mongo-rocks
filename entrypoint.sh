@@ -1,15 +1,16 @@
 #!/bin/bash
 set -m
 
-mongodb_cmd="mongod --storageEngine rocksdb --dbpath $DBPATH"
+mongodb_cmd="mongod --storageEngine rocksdb"
 cmd="$mongodb_cmd --httpinterface --rest --master"
-
-if [ "$DBPATH" != "" ] && [ "$DBPATH" != "/data/db" ]; then
-  mkdir -p "$DBPATH"
-fi
 
 if [ "$AUTH" == "yes" ]; then
   cmd="$cmd --auth"
+fi
+
+if [ "$DBPATH" != "" ]; then
+  mkdir -p "$DBPATH"
+  cmd="$cmd --dbpath $DBPATH"
 fi
 
 if [ "$OPLOG_SIZE" != "" ]; then
