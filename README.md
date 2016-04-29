@@ -2,7 +2,7 @@
 
 ## How To Use
 ```
-docker run -d -p 27017:27017 -e DB_USER=test DB_PASS=test DATABASE=mongorocks jadsonlourenco/mongo-rocks
+docker run -d -p 27017:27017 -e DB_USER=test DB_PASS=test DATABASE=mongorocks jadsonlourenco/mongo-rocks:1.1.0
 ```
 
 ## Environment Variables
