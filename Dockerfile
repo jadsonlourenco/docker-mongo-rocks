@@ -2,11 +2,12 @@ FROM ubuntu:14.04
 MAINTAINER Jadson Lourenço <jadsonlourenco@gmail.com>
 LABEL Description="Percona MongoRocks"
 
-RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A && \
-  echo "deb http://repo.percona.com/apt "$(lsb_release -sc)" main" | sudo tee /etc/apt/sources.list.d/percona.list && \
-  echo "deb-src http://repo.percona.com/apt "$(lsb_release -sc)" main" | sudo tee -a /etc/apt/sources.list.d/percona.list && \
-  apt-get update && \
-  apt-get install percona-server-mongodb -y -f
+RUN apt-get update && apt-get install -y curl && \
+  curl -s -o /tmp/psmdb-3.2.4-1.0-rc2-r21-trusty-x86_64-bundle.tar https://www.percona.com/downloads/percona-server-mongodb/percona-server-mongodb-3.2.4-1.0rc2/binary/debian/trusty/x86_64/psmdb-3.2.4-1.0-rc2-r21-trusty-x86_64-bundle.tar && \
+  tar -xf /tmp/psmdb-3.2.4-1.0-rc2-r21-trusty-x86_64-bundle.tar -C /tmp/ && \
+  dpkg -i /tmp/percona-server-mongodb-*.deb && \
+  apt-get remove -y curl && \
+  rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 ENV AUTH="yes" \
   ADMIN_USER="admin" \
