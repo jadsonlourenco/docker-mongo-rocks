@@ -27,9 +27,6 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldPeriodMS: 1000});"
-mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldIterations: 100000});"
-
 if [ ! -f "$DBPATH"/.mongodb_password_set ]; then
   /set_auth.sh
 fi
