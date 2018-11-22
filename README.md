@@ -1,3 +1,10 @@
+# DISCONTINUED!
+read: https://www.percona.com/doc/percona-server-for-mongodb/3.6/mongorocks.html
+
+** Please migrate to https://hub.docker.com/r/percona/percona-server-mongodb/ **
+
+---
+
 # Percona Mongodb with Rocksdb storage - MongoRocks on Docker
 
 ## How To Use
